@@ -50,9 +50,10 @@
             window.onload = function() {
                 try{
                     const experiemnt = JSON.parse(localStorage.getItem("experiment"));
-                    document.getElementById("termsAndConditionsText").textContent = experiemnt.termsAndConditionsText;
+                    //document.getElementById("termsAndConditionsText").textContent = experiemnt.termsAndConditionsText;
                     //document.getElementById("termsAndConditionsLink").innerHTML += `<a href="${experiemnt.termsAndConditionsLink}" target="blank">click aquí<a/>`;
                 }catch(e){
+                    console.log(e);
                     window.location.href =
                   'https://jhonatan247.github.io/eye-trackk/';
                 }
