@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <!--<link rel="icon" href="../../favicon.ico">-->
+
+        <title>A2censo</title>
+        <!-- Bootstrap core CSS -->
+        <link href="./node_modules/bootstrap/dist/css/bootstrap.min.css"
+            rel="stylesheet">
+
+        <link rel="stylesheet" href="css/highlight/styles/default.css">
+        <script src="css/highlight/highlight.pack.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
+
+        <style type="text/css">
+            body {
+                margin: 0;
+                padding: 0;
+            }
+            .container-fluid {
+                height: 100vh;
+                background-image: url('./second-bg.png');
+
+                background-size: cover;
+            }
+            .btn{
+                padding: 10px 30px 10px 30px;
+            }
+            .container{
+                height: 90vh;
+            }
+            .form-container{
+                background-color: white;
+                border-radius: 10px;
+                height: 100%;
+                overflow-y: auto;
+            }
+            .terms{
+                height: 40vh;
+                overflow-y: auto;
+                border-style: solid;
+                border-radius: 10px;
+                border-width: 1px;
+            }
+            .form-control{
+                background-color: #EEECEC;
+                border-width: 3px;
+                color: #A9A6A6;
+                border-color: A9A6A6;
+            }
+        </style>
+        <script>
+            async function onSubmit(){
+                const name = document.getElementById("nameFiled").value;
+                const email = document.getElementById("emailFiled").value;
+                const birthDate = document.getElementById("birthDateFiled").value;
+                const phoneNumber = document.getElementById("phoneNumberFiled").value;
+                const incomeLevel = document.getElementById("incomeLevelFiled").value;
+                const documentNumber = document.getElementById("documentNumberFiled").value;
+                const location = document.getElementById("locationFiled").value;
+                const sex = document.getElementById("sexFiled").value;
+                const password = document.getElementById("passwordFiled").value;
+                const isNew = document.getElementById("isNew").checked;
+                try{
+                    const rawResponse = await fetch('https://dcxtextapp.herokuapp.com/api/users', {
+                        method: 'POST',
+                        headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({name, email, birthDate: new Date(birthDate), phoneNumber, incomeLevel, documentNumber, location, sex, password, isNew})
+                    });
+                    const content = await rawResponse.json();
+                    if(content && content.success == true){
+                        localStorage.setItem("user",JSON.stringify(content.data));
+                        window.location.href =
+                    'http://localhost:3000/security-code.html';
+                    }else{
+                        alert("Ha ocurrido un error: " + content.message);
+                    }
+                }catch(e){
+                    alert("Ha ocurrido un error: " + e.message);
+                }
+            }
+        </script>
+    </head>
+
+
+    <body data-spy="scroll" data-target="#navbar">
+        <div class="container-fluid d-flex align-items-center">
+            <div class="container pt-2 pb-2 pl-5 pr-5">
+                <div class="col-12 text-gray form-container pt-5 pb-5 pl-5
+                    pr-5">
+                    <h2 class="text-uppercase text-success col-12 text-center
+                        mb-5">Ingrese
+                        sus datos</h2>
+                    <div class="row mb-3">
+                        <div class="col-4 text-right">
+                            <h5 class="font-weight-bold">
+                                Nombre *
+                            </h5>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group">
+                                <input type="text" class="form-control"
+                                    id="nameFiled"
+                                    placeholder="Escriba aquí su nombre">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-4 text-right">
+                            <h5 class="font-weight-bold">
+                                Correo electrónico *
+                            </h5>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group">
+                                <input type="text" class="form-control"
+                                    id="emailFiled"
+                                    placeholder="Usuario@ejemplo.com">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-4 text-right">
+                            <h5 class="font-weight-bold">
+                                Fecha de nacimiento *
+                            </h5>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group">
+                                <input type="date" class="form-control"
+                                    id="birthDateFiled">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-4 text-right">
+                            <h5 class="font-weight-bold">
+                                Teléfono celular *
+                            </h5>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group">
+                                <input type="number" class="form-control"
+                                    id="phoneNumberFiled"
+                                    placeholder="Ingrese su teléfono">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-4 text-right">
+                            <h5 class="font-weight-bold">
+                                Ingresos mensuales *
+                            </h5>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group">
+                                <input type="number" class="form-control"
+                                    id="incomeLevelFiled"
+                                    placeholder="Ingresos
+                                    mensuales">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-4 text-right">
+                            <h5 class="font-weight-bold">
+                                Documento *
+                            </h5>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group">
+                                <input type="number" class="form-control"
+                                    id="documentNumberFiled"
+                                    placeholder="Ingrese su documento">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-4 text-right">
+                            <h5 class="font-weight-bold">
+                                Dirección *
+                            </h5>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group">
+                                <input type="text" class="form-control"
+                                    id="locationFiled"
+                                    placeholder="Ingrese su dirección">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-4 text-right">
+                            <h5 class="font-weight-bold">
+                                Sexo *
+                            </h5>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group">
+                                <select class="form-control" id="sexFiled">
+                                    <option value="masculino">Masculino</option>
+                                    <option value="femenino">Femenino</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-4 text-right">
+                            <h5 class="font-weight-bold">
+                                Contraseña *
+                            </h5>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group">
+                                <input type="password" class="form-control"
+                                    id="passwordFiled"
+                                    placeholder="Ingrese una nueva contraseña">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-4 text-right">
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group">
+                                <input type="checkbox" class="form-check-input
+                                    mr-4"
+                                    id="isNew">
+
+                                <label class="form-check-label" for="isNew">
+                                    <h5>
+                                        He usado antes la plataforma a2censo
+                                    </h5>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6 offset-4">
+                            <p>* Todos los campos son obligatorios</p>
+                        </div>
+                    </div>
+                    <div class="row mt-4">
+                        <div class="col-6 text-center">
+                            <a href="terms.html">
+                                <button type="button" class="btn
+                                    btn-outline-danger">Cancelar</button>
+                            </a>
+                        </div>
+                        <div class="col-6 text-center">
+                            <button type="button" class="btn btn-success"
+                                onclick="onSubmit()">Ingresar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <script
+            src="./node_modules/jquery/dist/jquery.min.js"></script>
+        <script
+            src="./node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    </body>
+</html>

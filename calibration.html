@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<!--
+This is an example HTML that shows how WebGazer can be used on a website.
+This file provides the additional features:
+  * An integrated, intuitive and sleek action bar with an informative "help" module accessible at all times
+  * Structured 9-point calibration system
+  * Accuracy measure of predictions based on calibration process
+  * Video feedback regarding face positioning
+  * Improved eye predictions visible to the user
+Instructions on use can be found in the README repository.
+-->
+<html>
+    <head>
+        <META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=utf-8">
+        <TITLE>A2censo</TITLE>
+        <link rel="stylesheet" type="text/css" href="./css/style.css">
+        <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
+        <script async type="text/javascript" src="./webgazer.js"></script>
+        <style>
+          body{
+                background-color: #EEECEC;
+                margin: 0;
+                padding: 0;
+          }
+          #webgazerNavbar{
+                background-color: #EEECEC;
+                margin: 0;
+          }
+          a{
+            text-decoration: none;
+            color: white;
+          }
+          
+          #page-container {
+                height: 100vh;
+                background-image: url('./third-bg.png');
+                background-size: cover;
+                display: none;
+                margin: 0;
+                padding: 0;
+            }
+            .btn{
+                padding: 10px 30px 10px 30px;
+            }
+            .container{
+                background-color: white;
+                height: 90vh;
+            }
+            .terms{
+                height: 40vh;
+                overflow-y: auto;
+                border-style: solid;
+                border-radius: 10px;
+                border-width: 1px;
+            }
+            .webpage{
+                width: 100%;
+                height: 100%;
+            }
+        </style>
+    </head>
+    <body LANG="en-US" LINK="#0000ff" DIR="LTR">
+      <canvas id="plotting_canvas" width="500" height="500" style="cursor:crosshair;"></canvas>
+
+        <script src="../node_modules/jquery/dist/jquery.min.js"></script>
+        <script src="./node_modules/sweetalert/dist/sweetalert.min.js"></script>
+
+        <script src="./js/main.js"></script>
+        <script src="./js/calibration.js"></script>
+        <script src="./js/precision_calculation.js"></script>
+        <script src="./js/precision_store_points.js"></script>
+
+        <!-- Calibration points -->
+        <div class="calibrationDiv" id="calibrationDiv">
+            <input type="button" class="Calibration" id="Pt1"></input>
+            <input type="button" class="Calibration" id="Pt2"></input>
+            <input type="button" class="Calibration" id="Pt3"></input>
+            <input type="button" class="Calibration" id="Pt4"></input>
+            <input type="button" class="Calibration" id="Pt5"></input>
+            <input type="button" class="Calibration" id="Pt6"></input>
+            <input type="button" class="Calibration" id="Pt7"></input>
+            <input type="button" class="Calibration" id="Pt8"></input>
+            <input type="button" class="Calibration" id="Pt9"></input>
+        </div>
+
+        <!-- Modal -->
+        <div id="helpModal" class="modal fade" role="dialog">
+          <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+              <div class="modal-body">
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolore similique aliquid amet quisquam eveniet. Unde nemo culpa explicabo temporibus. Sunt natus ex ut error nulla! Culpa consectetur in est nisi!</p>
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolore similique aliquid amet quisquam eveniet. Unde nemo culpa explicabo temporibus. Sunt natus ex ut error nulla! Culpa consectetur in est nisi!</p>
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolore similique aliquid amet quisquam eveniet. Unde nemo culpa explicabo temporibus. Sunt natus ex ut error nulla! Culpa consectetur in est nisi!</p>
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolore similique aliquid amet quisquam eveniet. Unde nemo culpa explicabo temporibus. Sunt natus ex ut error nulla! Culpa consectetur in est nisi!</p>
+              </div>
+              <div class="modal-footer">
+                <button id="closeBtn" type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="Restart()">Calibrar</button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <div class="container-fluid" id="page-container">
+            <div class="col-12 h-100 m-0 p-0">
+                <iframe src="https://www.pypper.com.co/"
+                    class="webpage" id="iframe"></iframe>
+            </div>
+        </div>
+
+        <!-- Latest compiled JavaScript -->
+        <script src="./js/resize_canvas.js"></script>
+        <script src="./node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+
+    </body>
+</html>

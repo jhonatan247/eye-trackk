@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <!--<link rel="icon" href="../../favicon.ico">-->
+
+        <title>A2censo</title>
+        <!-- Bootstrap core CSS -->
+        <link href="./node_modules/bootstrap/dist/css/bootstrap.min.css"
+            rel="stylesheet">
+
+        <link rel="stylesheet" href="css/highlight/styles/default.css">
+        <script src="css/highlight/highlight.pack.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
+
+        <style type="text/css">
+            body {
+                margin: 0;
+                padding: 0;
+            }
+            .container-fluid {
+                height: 100vh;
+                background-image: url('./second-bg.png');
+                background-size: cover;
+            }
+            .btn{
+                padding: 10px 30px 10px 30px;
+            }
+            .container{
+                height: 90vh;
+            }
+            .form-container{
+                background-color: white;
+                border-radius: 10px;
+                height: 100%;
+            }
+            .terms{
+                height: 40vh;
+                overflow-y: auto;
+                border-style: solid;
+                border-radius: 10px;
+                border-width: 1px;
+            }
+        </style>
+        <script>
+            window.onload = function() {
+                try{
+                    const experiemnt = JSON.parse(localStorage.getItem("experiment"));
+                    document.getElementById("termsAndConditionsText").textContent = experiemnt.termsAndConditionsText;
+                    //document.getElementById("termsAndConditionsLink").innerHTML += `<a href="${experiemnt.termsAndConditionsLink}" target="blank">click aquí<a/>`;
+                }catch(e){
+                    window.location.href =
+                  'http://localhost:3000/';
+                }
+            };
+
+            function acceptTerms(){
+                if(!document.getElementById("termsCheck").checked){
+                    alert("Debes aceptar términos y condiciones para continuar");
+                    return;
+                }
+                
+                window.location.href =
+                  'http://localhost:3000/login.html';
+            }
+            
+        </script>
+    </head>
+
+
+    <body data-spy="scroll" data-target="#navbar">
+        <div class="container-fluid d-flex align-items-center p-5">
+            <div class="container pl-5 pr-5">
+                <div class="col-12 text-gray form-container pt-5 pb-5 pl-5
+                    pr-5">
+                    <h2 class="text-uppercase text-success">Autorización de uso
+                        de datos</h2>
+                    <h5 class="mt-3" id="termsAndConditionsText">Este proyecto
+                        de usabilidad de página
+                        a2censo pertenece a BVC, entidad que busca el
+                        mejoramiento de la experiencia de usuario en su página
+                        Web</h5>
+                    <div class="terms p-4 mt-5" id="termsAndConditionsLink">
+                        <p align="justify">
+                            Este estudio está dirigido a usuarios e inversores
+                            de la página de a2censo, busca evaluar la
+                            experiencia al navegar en la página, para
+                            posteriormente mejorar aquellos aspectos que puedan
+                            dificultar su navegación o comprensión de la misma.
+                            Es realizado por la Bolsa de Valores de Colombia a
+                            través de la firma Team Nova SAS.
+                        </p>
+                        <p align="justify">
+                            El estudio requiere la aplicación de una prueba
+                            online a través del computador de su hogar y usando
+                            la cámara WEB instalada en el equipo.
+                        </p>
+                        <p align="justify">
+                            Para realizar la prueba, deberá navegar la página
+                            web de a2censo, observar imágenes y responder
+                            preguntas asociadas a su experiencia como usuario.
+                            Antes de empezar la prueba, es necesario que
+                            complete un formulario de datos personales y una
+                            tarea de ajuste de la cámara para que pueda hacerse
+                            el seguimiento de su rostro y mirada. Este
+                            procedimiento no es invasivo y consiste en observar
+                            la pantalla de un computador y seguir las
+                            instrucciones pertinentes. Se realizará la
+                            recolección de datos con las tecnologías de eye
+                            tracker, face recording y mouse tracker, que
+                            permiten analizar los movimientos de su rostro,
+                            mirada y mouse por medio de la webcam del
+                            computador.
+                        </p>
+                        <p align="justify">
+                            Los datos recolectados de su navegación serán
+                            grabados y procesados a través de una base de datos,
+                            serán anónimos y solo se registrará lo que ocurre en
+                            la navegación de la página de a2censo, no de
+                            imágenes por fuera de la pantalla, ni de información
+                            que digite, o de la navegación en otras páginas.
+                        </p>
+                        <p align="justify">
+                            Una vez finalizada su participación, los datos
+                            recopilados serán procesados para identificar
+                            mejoras posibles en la página. La duración del
+                            estudio dependerá del tiempo de la navegación y de
+                            la resolución de las preguntas, pudiendo ser
+                            aproximadamente de 40 minutos, en una única sesión.
+                        </p>
+                        <p align="justify">
+                            Este estudio no implica ningún riesgo, de carácter
+                            físico, emocional, o de información para usted.
+                        </p>
+                        <p align="justify">
+                            Al final del estudio, si se ha completado
+                            satisfactoriamente la prueba, le enviaremos un
+                            obsequio como agradecimiento por su tiempo y
+                            dedicación para culminarla.
+                        </p>
+                        <p align="justify">
+                            Como seleccionado para desarrollar la prueba, podrá
+                            elegir con libertad si está de acuerdo o no con su
+                            participación; si está de acuerdo, debe tener
+                            presente que puede retirarse de la prueba en el
+                            momento que lo desee y si no accede a la
+                            participación, esto no lo perjudicará en lo
+                            absoluto.
+                        </p>
+                        <p align="justify">
+                            Los datos que usted proporcione y los que se
+                            obtendrán en el estudio, se utilizarán para mejorar
+                            la experiencia de los usuarios en la página de
+                            a2censo. Usted podrá contactarse al correo
+                            XXXXXXXXXX para cualquier inquietud.
+                        </p>
+                        <p align="justify">
+                            Al hacer clic en la casilla “he leído y acepto los
+                            términos y condiciones”, hago constar que he leído
+                            la información respecto a la prueba de usabilidad de
+                            la página de a2censo, y estoy de acuerdo en
+                            participar en este estudio. Además, doy mi
+                            consentimiento para que la información recolectada
+                            sea utilizada para mejorar la experiencia de usuario
+                            de la página web, y que los datos obtenidos de la
+                            navegación y los datos personales producto de la
+                            participación en el estudio sean utilizados,
+                            garantizando el anonimato.
+                        </p>
+                    </div>
+
+                    <div class="form-group form-check m-3">
+                        <input type="checkbox" class="form-check-input"
+                            id="termsCheck">
+                        <label class="form-check-label" for="exampleCheck1">He
+                            leido y acepto los términos y condiciones</label>
+                    </div>
+                    <div class="row">
+                        <div class="col-6 text-center">
+                            <a href="index.html">
+                                <button type="button" class="btn
+                                    btn-outline-danger">No
+                                    acepto</button>
+                            </a>
+                        </div>
+                        <div class="col-6 text-center">
+                            <button type="button" class="btn btn-success"
+                                onclick="acceptTerms()">Acepto</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <script
+            src="./node_modules/jquery/dist/jquery.min.js"></script>
+        <script
+            src="./node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    </body>
+</html>
