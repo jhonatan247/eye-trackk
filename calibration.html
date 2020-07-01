@@ -34,7 +34,7 @@ Instructions on use can be found in the README repository.
           
           #page-container {
                 height: 100vh;
-                background-image: url('./third-bg.png');
+                background-image: url('./assets/images/third-bg.png');
                 background-size: cover;
                 display: none;
                 margin: 0;
@@ -56,7 +56,7 @@ Instructions on use can be found in the README repository.
             }
             .webpage{
                 width: 100%;
-                height: 100%;
+                height: 92%;
             }
         </style>
     </head>
@@ -98,7 +98,6 @@ Instructions on use can be found in the README repository.
                 <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolore similique aliquid amet quisquam eveniet. Unde nemo culpa explicabo temporibus. Sunt natus ex ut error nulla! Culpa consectetur in est nisi!</p>
               </div>
               <div class="modal-footer">
-                <button id="closeBtn" type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
                 <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="Restart()">Calibrar</button>
               </div>
             </div>
@@ -107,8 +106,11 @@ Instructions on use can be found in the README repository.
         </div>
         <div class="container-fluid" id="page-container">
             <div class="col-12 h-100 m-0 p-0">
-                <iframe src="https://www.pypper.com.co/"
+                <iframe src="http://localhost:3002/"
                     class="webpage" id="iframe"></iframe>
+                <div class="col-12 bg-white text-right">
+                  <button type="button" class="btn btn-primary" data-dismiss="modal">Finalizar</button>
+                </div>
             </div>
         </div>
 

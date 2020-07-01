@@ -10728,7 +10728,6 @@ function store_points(x, y, k) {
             // Count time
             var elapsedTime = performance.now() - clockStart;
             // [20180611 James Tompkin]: What does this line do?
-            callback(latestGazeData, elapsedTime);
 
             // Draw face overlay
             if( webgazer.params.showFaceOverlay )
@@ -10758,7 +10757,7 @@ function store_points(x, y, k) {
                     y += smoothingVals.get(d).y;
                 }
                 var pred = webgazer.util.bound({'x':x/len, 'y':y/len});
-
+                callback(pred, elapsedTime);
                 if (store_points_var) {
                     drawCoordinates('blue',pred.x,pred.y); //draws the previous predictions
                     //store the position of the past fifty occuring tracker preditions
@@ -11416,7 +11415,10 @@ function store_points(x, y, k) {
         callback = nopCallback;
         return webgazer;
     };
-
+    webgazer.getClockStart = function() {
+      return clockStart;
+    };
+    
 
     //GETTERS
     /**

@@ -54,7 +54,7 @@ $(document).ready(function () {
     }
     CalibrationPoints[id]++; // increments values
 
-    if (CalibrationPoints[id] == 4) {
+    if (CalibrationPoints[id] == 1) {
       //only turn to yellow after 5 clicks
       $(this).css('background-color', 'yellow');
       $(this).prop('disabled', true); //disables the button
@@ -122,19 +122,22 @@ $(document).ready(function () {
                         data: data,
                         clock: clock,
                       });
-                      fetch('https://dcxtextapp.herokuapp.com/api/users/saccades', {
-                        method: 'POST',
-                        headers: {
-                          Accept: 'application/json',
-                          'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify({
-                          taskIntentId: taskIntent,
-                          timeInMiliseconds: Math.floor(clock),
-                          posX: data.x,
-                          posY: data.y,
-                        }),
-                      });
+                      fetch(
+                        'https://dcxtextapp.herokuapp.com/api/users/saccades',
+                        {
+                          method: 'POST',
+                          headers: {
+                            Accept: 'application/json',
+                            'Content-Type': 'application/json',
+                          },
+                          body: JSON.stringify({
+                            taskIntentId: taskIntent,
+                            timeInMiliseconds: Math.floor(clock),
+                            posX: data.x,
+                            posY: data.y,
+                          }),
+                        }
+                      );
                     }
                   })
                   .setOnNeedToFixPosition(function (data) {
@@ -147,12 +150,22 @@ $(document).ready(function () {
 
                 var iframepos = $('#iframe').position();
                 var iframe = document.getElementById('iframe');
-                console.log(iframe);
-                iframe.contentWindow.document.body.onclick = function (e) {
-                  var x = e.clientX + iframepos.left;
-                  var y = e.clientY + iframepos.top;
-                  console.log(x + ' ' + y);
-                };
+                iframe.contentWindow.postMessage(
+                  {
+                    clickUrl:
+                      'http://localhost:8082/api/users/mouse-saccades',
+                    clickData: {
+                      taskIntentId: taskIntent,
+                      clockStart: webgazer.getClockStart()
+                    },
+                    locationUrl:
+                      'http://localhost:8082/api/users/task-intent-url',
+                    locationData: {
+                      taskIntentId: taskIntent,
+                    },
+                  },
+                  'http://localhost:3002/'
+                );
               } else {
                 window.location.reload();
                 //use restart function to restart the calibration
